@@ -40,8 +40,10 @@ seriesOrder: 1                  # optional — order within the series
 - **Honest.** If something broke, say it broke. If you wasted time, say how much.
 - **No hype.** Avoid "revolutionary", "game-changing", "unlock the power of". They mean nothing.
 - **A little humour goes a long way.** One good joke per post is better than forced jokes everywhere.
-- **Duck jokes welcome.** The duck is part of the brand — lean into it occasionally.
+- **Duck jokes welcome.** The duck is part of the brand, lean into it occasionally.
 - **Short sentences win.** If a sentence needs a comma and a semicolon, split it into two.
+- **No em dashes ( —).** They read as AI-generated. Use a comma or a new sentence instead.
+- **No hex color codes in prose.** Say "duck yellow" not "#F5C518". Keep it human.
 
 ---
 

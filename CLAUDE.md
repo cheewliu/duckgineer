@@ -77,6 +77,8 @@ Update it whenever preferences, conventions, or decisions change.
 - Memes and inline images are encouraged — keeps it human
 - End posts with a real takeaway or open question, not "thanks for reading"
 - Duck jokes and references are welcome — the duck is part of the brand
+- Never use em dashes ( —) in post content — they read as AI-generated
+- Never include hex color codes in post content — too technical, not natural writing
 
 ### The AI transparency rule
 Ideas and experiences are 100% the author's. Claude may be used to clean grammar or structure — never to generate content from scratch.
