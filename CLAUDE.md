@@ -9,7 +9,7 @@ Update it whenever preferences, conventions, or decisions change.
 
 - **Name:** Duckgineer
 - **Framework:** Astro 6, static output
-- **Repo:** https://github.com/cheewliu/EngineerForgeAI
+- **Repo:** https://github.com/cheewliu/duckgineer
 - **Live site:** https://duckgineer.vercel.app
 - **Local dev:** http://localhost:4321
 
