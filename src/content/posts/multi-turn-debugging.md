@@ -1,6 +1,6 @@
 ---
 title: "Multi-Turn Conversations for Complex Debugging Workflows"
-date: 2026-03-24
+date: 2026-03-15
 description: "How to structure a multi-turn Claude conversation to debug non-obvious problems — and why the sequence of questions matters more than any single prompt."
 tags: ["claude", "debugging", "workflow", "prompt-engineering"]
 cover: "https://picsum.photos/seed/debug/800/450"

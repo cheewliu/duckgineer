@@ -1,6 +1,6 @@
 ---
 title: "Token Optimization: How I Cut API Costs by 60% in Production"
-date: 2026-04-07
+date: 2026-04-05
 description: "A real breakdown of where tokens were being wasted in my Claude API usage, and the specific techniques that cut the bill without hurting output quality."
 tags: ["token-optimization", "claude", "cost"]
 cover: "https://picsum.photos/seed/optimize/800/450"

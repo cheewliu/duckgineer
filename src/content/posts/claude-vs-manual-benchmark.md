@@ -1,6 +1,6 @@
 ---
 title: "AI vs Manual: A 90-Day Benchmark on Real Engineering Tasks"
-date: 2026-03-28
+date: 2026-03-19
 description: "I tracked time and quality on 200+ engineering tasks, split between Claude-assisted and manual. Here are the actual numbers."
 tags: ["benchmark", "productivity", "claude", "workflow"]
 cover: "https://picsum.photos/seed/chart/800/450"

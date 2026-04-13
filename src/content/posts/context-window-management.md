@@ -1,6 +1,6 @@
 ---
 title: "Context Window Management: The Hidden Skill in Claude Workflows"
-date: 2026-03-05
+date: 2026-02-27
 description: "Most engineers think about what to put in the context. Few think about what to leave out — and that's where quality and cost are actually won or lost."
 tags: ["claude", "prompt-engineering", "token-optimization", "workflow"]
 cover: "https://picsum.photos/seed/memory/800/450"

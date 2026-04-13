@@ -1,6 +1,6 @@
 ---
 title: "Claude Code in a Real Codebase: 30 Days of Honest Notes"
-date: 2026-04-03
+date: 2026-03-27
 description: "What Claude Code is actually good at, where it falls short, and the daily workflow I settled on after a month of real use."
 tags: ["claude-code", "cli", "workflow"]
 cover: "https://picsum.photos/seed/coding/800/450"

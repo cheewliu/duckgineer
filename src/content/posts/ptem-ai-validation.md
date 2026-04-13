@@ -1,6 +1,6 @@
 ---
 title: "PTEM + Claude: AI-Assisted Parameter Validation at Scale"
-date: 2026-03-15
+date: 2026-03-07
 description: "How I integrated Claude into a PTEM-based test automation platform to validate test parameters before execution — and what I learned about LLM reliability at scale."
 tags: ["ptem", "opentap", "test-automation", "claude", "csharp"]
 cover: "https://picsum.photos/seed/validate/800/450"

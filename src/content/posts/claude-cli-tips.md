@@ -1,6 +1,6 @@
 ---
 title: "10 Claude CLI Tricks I Use Every Day"
-date: 2026-03-20
+date: 2026-03-11
 description: "Short, practical Claude CLI tips from daily use — covering slash commands, CLAUDE.md, permission modes, and keyboard shortcuts that save real time."
 tags: ["claude-code", "cli", "tips"]
 cover: "https://picsum.photos/seed/terminal/800/450"

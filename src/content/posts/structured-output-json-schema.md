@@ -1,6 +1,6 @@
 ---
 title: "Enforcing JSON Schema Output from Claude: A Practical Guide"
-date: 2026-04-01
+date: 2026-03-23
 description: "Reliable structured JSON from Claude without brittle regex parsing — using schema constraints, validation loops, and the right prompt structure."
 tags: ["claude", "json", "prompt-engineering", "csharp"]
 cover: "https://picsum.photos/seed/schema/800/450"

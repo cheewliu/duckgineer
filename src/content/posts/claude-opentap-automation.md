@@ -1,6 +1,6 @@
 ---
 title: "Claude + OpenTAP: Automating Test Step Generation"
-date: 2026-04-05
+date: 2026-04-01
 description: "A walkthrough of how I use Claude to generate OpenTAP test steps from plain-English specifications — including a live demo of the workflow."
 tags: ["opentap", "claude", "test-automation"]
 cover: "https://picsum.photos/seed/automate/800/450"

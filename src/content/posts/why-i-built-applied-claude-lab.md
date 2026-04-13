@@ -1,6 +1,6 @@
 ---
 title: "Why I'm Building Applied Claude Lab"
-date: 2026-04-11
+date: 2026-04-13
 description: "An introduction to Applied Claude Lab — what it is, why it exists, and what kind of content to expect."
 tags: ["meta", "introduction"]
 draft: false
