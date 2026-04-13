@@ -55,18 +55,7 @@ That role isn't going anywhere. And honestly? I don't think it should.
 
 One markdown file changed the whole workflow.
 
-Claude has a persistent memory system. Drop a `CLAUDE.md` at the root of your repo and it reads it at the start of every session. No more repeating yourself. No more "remember, we don't use that old name anymore". It just knows.
-
-Here's a slice of ours:
-
-```markdown
-## Things to never do
-- Never mention PTEM, OpenTAP only
-- Never use old brand names: EngineerForge, Applied Claude Lab, Token Drift
-- Always show a draft before implementing post changes
-- Don't make posts sound like AI wrote them
-- Never use git add -A blindly, stage specific files
-```
+Claude has a persistent memory system. Drop a `CLAUDE.md` at the root of your repo and it reads it at the start of every session. No more repeating context every time you open a new chat. It just knows.
 
 It remembered the duck. It remembered the brand rules. It remembered which code theme we settled on after changing it three times. If you're building anything non-trivial with Claude Code, a `CLAUDE.md` is not optional.
 
