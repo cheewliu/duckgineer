@@ -1,116 +1,89 @@
 ---
-title: "Prompt Engineering for Deterministic C# Code Generation"
-date: 2026-04-10
-description: "How I structure prompts to get Claude to produce reliable, compilable C# every time — including the exact templates I use."
-tags: ["prompt-engineering", "csharp", "claude"]
-cover: "https://picsum.photos/seed/csharp/800/450"
+title: "Using .md Files to Standardise Your Team's AI Agent"
+date: 2026-04-13
+description: "Every engineer on the team has their own AI setup. Here's how one .md file gets them all behaving the same way — without cloning anyone's brain."
+tags: ["prompt-engineering", "workflow", "claude"]
+cover: "/images/hero-md-team-standard.png"
 draft: false
 ---
 
-Getting Claude to generate C# code is easy. Getting it to generate *correct*, *compilable*, *idiomatic* C# that fits into your existing codebase — that's the engineering challenge.
+Here's a problem nobody talks about: you've got a team of engineers, each running their own AI tool. Some use Claude. Some use GitHub Copilot. Some are on Cursor. And every single one of them has a slightly different setup, slightly different prompting habits, and slightly different results.
 
-After six months of daily Claude API usage in a production C# + OpenTAP environment, I've developed a set of prompt patterns that produce deterministic, reliable output almost every time.
+Same AI. Different brain. Different output.
 
-## The Core Problem
+Sound familiar?
 
-Claude is a probabilistic model. Without constraints, it will:
-- Choose whichever C# pattern feels natural to it
-- Mix coding styles from different .NET eras
-- Invent method names that don't exist in your codebase
-- Skip error handling when the problem looks simple
+## What's a .md Memory File?
 
-The goal of prompt engineering for code is to reduce that variance to near zero.
+Most AI tools today — Claude, Copilot, Cursor — support some form of persistent instruction file. A markdown file that the AI reads before doing anything. Think of it as a briefing document: "here's who we are, here's how we work, here's what we never do."
 
-## Pattern 1: Provide a Code Skeleton
+For Claude, it's `CLAUDE.md` — drop it at the root of your repo and Claude reads it automatically at the start of every session.
 
-Never ask Claude to write a class from scratch. Give it the skeleton:
+For GitHub Copilot, it's `.github/copilot-instructions.md` — [documented here](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions). Same idea. Load once, apply everywhere.
 
-```csharp
-// Existing class skeleton — fill in the implementation
-public class VoltageValidator : IParameterValidator
-{
-    private readonly double _minVoltage;
-    private readonly double _maxVoltage;
+These files are just markdown. No plugins. No configuration panels. Just text. And that's exactly what makes them powerful — any engineer can read, edit, and version-control them.
 
-    public VoltageValidator(double min, double max)
-    {
-        // TODO: implement
-    }
+## The Team Problem (and the Fix)
 
-    public ValidationResult Validate(TestParameter param)
-    {
-        // TODO: implement
-        // Rules:
-        // 1. param.Value must be within [_minVoltage, _maxVoltage]
-        // 2. Return ValidationResult.Pass() or ValidationResult.Fail(reason)
-        // 3. Do not throw exceptions
-    }
-}
+Here's what happens without a standard .md file:
+
+- Engineer A asks Claude to write a test step. Gets clean, minimal code.
+- Engineer B asks the same thing. Gets the same code wrapped in 3 layers of try/catch with XML doc comments on every method.
+- Engineer C is using Copilot and gets something that looks like it was written in 2015.
+
+Same tool. Wildly different output.
+
+With a shared `.md` file committed to the repo, everyone loads the same instructions. The AI still belongs to each engineer — their account, their agent, their conversation — but it now follows the same rules.
+
+> Same rules. Not the same person. (The AI is not HR. Probably.)
+
+## What Goes in the File
+
+Here's roughly what ours looks like for the engineering team:
+
+```markdown
+# Team AI Instructions
+
+## Stack
+- Language: C#, .NET 8
+- Test framework: OpenTAP
+- Style: match existing codebase patterns exactly
+
+## Rules
+- Never add XML doc comments unless asked
+- Never wrap in try/catch unless the existing code does it
+- Never use LINQ where a simple loop is clearer
+- Always target .NET 8, nullable reference types enabled
+
+## Context
+- This is a test automation codebase
+- Test steps inherit from OpenTAP's TestStep base class
+- Keep output deterministic — no random IDs, no Guid.NewGuid() unless asked
 ```
 
-When you hand Claude a skeleton with `// TODO: implement` comments and inline rules, the output variance drops dramatically. Claude fills in the blanks rather than making architectural decisions.
+Every engineer loads this. Claude reads it. Copilot reads it. Cursor reads it. Suddenly the whole team's AI is working from the same playbook.
 
-## Pattern 2: Show One Example of Existing Code
+## GitHub Copilot Specifically
 
-```
-Here is an existing validator in this codebase for reference:
+Copilot has first-class support for this via `.github/copilot-instructions.md`. Drop the file in that path, commit it, and Copilot picks it up automatically for anyone working in that repo.
 
-[paste FrequencyValidator.cs here]
+The format is the same — plain markdown. Rules, context, stack info, whatever you want the AI to know before it starts suggesting code.
 
-Now implement VoltageValidator following the exact same style.
-```
+```markdown
+# Copilot Instructions
 
-This is **one-shot prompting** at the architecture level. Claude will match:
-- Null-check patterns
-- Exception handling style
-- Logging calls
-- Method ordering
+You are helping with a C# test automation codebase using OpenTAP.
 
-## Pattern 3: State What NOT to Do
-
-Negative constraints are underrated:
-
-```
-Requirements:
-- Do NOT use LINQ where a simple loop is clearer
-- Do NOT add XML doc comments
-- Do NOT wrap in a try/catch unless explicitly asked
-- Do NOT change the method signature
+- Match the coding style of existing files exactly
+- Do not generate XML documentation comments
+- Prefer explicit types over var unless the type is obvious
+- All test steps must inherit from TestStep and override Execute()
 ```
 
-Explicit exclusions cut the most common Claude-isms: wrapping everything in try/catch, adding `/// <summary>` to every method, defaulting to LINQ even when it hurts readability.
+One file. Every engineer's Copilot. Same behaviour.
 
-## Pattern 4: Specify the .NET Target
+## The Bigger Picture
 
-```
-Target: .NET 8, C# 12
-Nullable reference types: enabled
-```
+This is really just version-controlling your team's AI behaviour. The `.md` file lives in git — it gets reviewed, it gets updated, it gets improved over time. When the team decides "we're moving to a new pattern", you update the file and everyone's AI follows.
 
-Without this, Claude will sometimes generate .NET Framework-era patterns (pre-nullable, pre-records, pre-pattern-matching). One line of context prevents this.
-
-## Real Results
-
-Using these four patterns together, I went from about a 40% first-pass compilation rate (in a complex codebase) to over 90%. The remaining 10% usually comes from missing context about internal APIs — which a fifth pass of "here is the interface for X" resolves.
-
-> The key insight: Claude doesn't need to be smarter, it needs more constraints. Every `// TODO` comment and every negative requirement is a degree of freedom removed from a probabilistic model.
-
-## Template I Actually Use
-
-```
-Context: [2-3 sentence description of the codebase and what this code will do]
-Target: .NET 8, C# 12, nullable enabled
-Style reference: [paste one similar class]
-
-Task: Implement [ClassName] following the skeleton below.
-
-Constraints:
-- Match the style of the reference exactly
-- Do not add XML docs
-- Do not add logging unless the reference class has it
-- Do not change method signatures
-
-[paste skeleton]
-```
-
-Copy it, fill it in. That's the whole system.
+It's not magic. It's just making the implicit explicit — the same way a coding standards doc works, except this one actually gets read. Because the AI reads it for you.

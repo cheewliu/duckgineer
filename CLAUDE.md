@@ -37,7 +37,7 @@ Update it whenever preferences, conventions, or decisions change.
 | File | Title | Date |
 |------|-------|------|
 | `why-i-built-applied-claude-lab.md` | Why I Am Building EngineerForge AI | 2026-04-10 |
-| `prompt-engineering-csharp.md` | Prompt Engineering for Deterministic C# Code Generation | 2026-04-10 |
+| `prompt-engineering-csharp.md` | Using .md Files to Standardise Your Team's AI Agent | 2026-04-13 |
 
 ---
 
