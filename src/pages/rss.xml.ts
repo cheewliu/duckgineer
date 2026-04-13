@@ -10,7 +10,7 @@ export async function GET(context: APIContext) {
     (a, b) => b.data.date.getTime() - a.data.date.getTime()
   );
 
-  const site = context.site ?? new URL('https://applied-claude-lab.vercel.app');
+  const site = context.site ?? new URL('https://duckgineer.vercel.app');
 
   return rss({
     title: 'Duckgineer',

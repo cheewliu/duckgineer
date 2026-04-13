@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://engineerforge-ai.vercel.app/sitemap-index.xml
+Sitemap: https://duckgineer.vercel.app/sitemap-index.xml

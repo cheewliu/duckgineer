@@ -36,7 +36,7 @@ Update it whenever preferences, conventions, or decisions change.
 ### Existing posts (in order)
 | File | Title | Date |
 |------|-------|------|
-| `why-i-built-applied-claude-lab.md` | Why I Am Building Duckgineer | 2026-04-10 |
+| `why-i-am-building-duckgineer.md` | Why I Am Building Duckgineer | 2026-04-10 |
 | `prompt-engineering-csharp.md` | Using .md Files to Standardise Your Team's AI Agent | 2026-04-13 |
 
 ---

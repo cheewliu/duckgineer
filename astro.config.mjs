@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://engineerforge-ai.vercel.app',
+  site: 'https://duckgineer.vercel.app',
   output: 'static',
   adapter: vercel(),
   markdown: {
