@@ -693,17 +693,21 @@ body, .site-header, .site-footer, .post-card, .mag-featured, .post-nav__item {
 
 .post-header { margin-bottom: 2rem; }
 
+.post-header__top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
 .post-header__back {
   display: inline-flex; align-items: center; gap: 0.4rem;
   font-size: 0.82rem; font-weight: 500; color: var(--text-3);
-  margin-bottom: 1.5rem; transition: color 0.15s;
+  transition: color 0.15s;
 }
 .post-header__back:hover { color: var(--accent); }
 
 .post-header__category {
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   display: inline-flex; align-items: center; gap: 0.3rem;
-  margin-bottom: 0.75rem;
 }
 
 .post-header__title {
@@ -1064,6 +1068,8 @@ body, .site-header, .site-footer, .post-card, .mag-featured, .post-nav__item {
 }
 
 @media (max-width: 768px) {
+  /* Shrink nav text on mobile so it fits */
+  .site-header__nav a { font-size: 0.8rem; padding: 0.35rem 0.5rem; }
   main { padding: 1.5rem 1.25rem 3rem; }
   .site-header__inner { padding: 0 1.25rem; }
   .category-strip__inner { padding: 0 1.25rem; }

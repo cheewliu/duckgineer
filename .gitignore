@@ -16,6 +16,11 @@ dist/
 # Claude Code
 .claude/
 
+# Stray root-level assets (kept locally, not needed in repo)
+brand.svg
+logo.svg
+test.jpg
+
 # Editor
 .vscode/
 .idea/

@@ -61,16 +61,18 @@ const hasToc = headings.filter(h => h.depth <= 3).length > 1;
   <div class={hasToc ? 'post-layout' : undefined}>
     <article class="post-article">
       <header class="post-header">
-        <a href="/" class="post-header__back">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
-            <path d="M10 3L5 8l5 5"/>
-          </svg>
-          All posts
-        </a>
+        <div class="post-header__top">
+          <a href="/" class="post-header__back">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
+              <path d="M10 3L5 8l5 5"/>
+            </svg>
+            All posts
+          </a>
 
-        <div class="post-header__category" style={`color:${tagColor.dot}`}>
-          <span class="post-card__category-dot" style={`background:${tagColor.dot}`}></span>
-          {firstTag}
+          <div class="post-header__category" style={`color:${tagColor.dot}`}>
+            <span class="post-card__category-dot" style={`background:${tagColor.dot}`}></span>
+            {firstTag}
+          </div>
         </div>
 
         <h1 class="post-header__title">{title}</h1>
