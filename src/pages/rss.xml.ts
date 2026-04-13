@@ -13,8 +13,8 @@ export async function GET(context: APIContext) {
   const site = context.site ?? new URL('https://applied-claude-lab.vercel.app');
 
   return rss({
-    title: 'EngineerForge AI',
-    description: 'Where Engineers Build With AI',
+    title: 'Duckgineer',
+    description: 'Where Engineers Talk, AI Thinks.',
     site,
     items: sorted.map((post) => ({
       title: post.data.title,

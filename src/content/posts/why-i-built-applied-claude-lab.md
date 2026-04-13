@@ -1,7 +1,7 @@
 ---
-title: "Why I Am Building EngineerForge AI"
+title: "Why I Am Building Duckgineer"
 date: 2026-04-10
-description: "An intro to EngineerForge AI — who's behind it, why it exists, and what kind of content to expect. Spoiler: grammar cancer meme included."
+description: "An intro to Duckgineer — who's behind it, why it exists, and what kind of content to expect. Spoiler: grammar cancer meme included."
 tags: ["meta", "introduction"]
 draft: false
 cover: "/images/hero-why-i-building.png"

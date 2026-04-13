@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="About" description="Who's behind EngineerForge AI, what we cover, and why it exists.">
+<BaseLayout title="About" description="Who's behind Duckgineer, what we cover, and why it exists.">
 
   <!-- Hero banner -->
   <div class="about-hero">
@@ -9,11 +9,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="about-hero__overlay"></div>
     <div class="about-hero__inner">
       <div class="about-hero__badge">est. 2026</div>
-      <h1 class="about-hero__title"><span class="logo-text__engineer">Engineer</span><span class="logo-text__forge">Forge</span> <span class="logo-text__ai--lg">AI</span></h1>
-      <p class="about-hero__tagline">Where Engineers Build With AI</p>
+      <h1 class="about-hero__title"><span class="logo-text__engineer">Duck</span><span class="logo-text__forge">gineer</span></h1>
+      <p class="about-hero__tagline">Where Engineers Talk, AI Thinks.</p>
       <p class="about-hero__sub">
-        A software and hardware engineer who decided that reading AI blog posts wasn't enough —
-        so started running the experiments instead. Some worked. Some didn't. All of it ended up here.
+        A real engineer's public lab showing how AI is used in software engineering workflows.<br/>
+        Some experiments worked. Some didn't. All of it ended up here.
       </p>
     </div>
   </div>
@@ -42,7 +42,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2 class="about-section__title">What we cover</h2>
     <div class="about-topics">
       <div class="about-topic">
-        <span class="about-topic__tag" style="background:rgba(139,92,246,0.15);color:#a78bfa">#claude</span>
+        <span class="about-topic__tag" style="background:rgba(245,197,24,0.15);color:#F5C518">#claude</span>
         <p>Prompt engineering, Claude Code, Claude CLI — what actually works in CI pipelines and production codebases.</p>
       </div>
       <div class="about-topic">
@@ -89,9 +89,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Least favourite thing: AI blog posts with no actual prompts in them. (Hence this site.)
       </p>
       <p>
-        EngineerForge AI started as notes-to-self. It became a blog when the notes got too useful to keep in a Teams chat that nobody reads.
+        Duckgineer started as notes-to-self. It became a blog when the notes got too useful to keep in a Teams chat that nobody reads.
       </p>
-      <a href="/posts/why-i-built-applied-claude-lab" class="about-author__link">Read why I started this →</a>
+      <a href="/posts/why-i-built-applied-claude-lab" class="about-author__link">Why I Am Building Duckgineer →</a>
     </div>
   </div>
 
@@ -126,7 +126,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .about-hero__badge {
   display: inline-block;
   font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--accent); border: 1px solid rgba(139,92,246,0.4);
+  color: var(--accent); border: 1px solid rgba(245,197,24,0.4);
   padding: 3px 12px; border-radius: 999px; margin-bottom: 1.5rem;
 }
 
@@ -206,7 +206,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .about-author__avatar {
   width: 72px; height: 72px; flex-shrink: 0;
   background: var(--gradient-subtle);
-  border: 2px solid rgba(139,92,246,0.3);
+  border: 2px solid rgba(245,197,24,0.3);
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: 2rem;
 }
@@ -220,7 +220,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   display: inline-block; margin-top: 0.5rem;
   font-size: 0.88rem; font-weight: 700;
   color: var(--accent); text-decoration: none;
-  border-bottom: 1px solid rgba(139,92,246,0.35);
+  border-bottom: 1px solid rgba(245,197,24,0.35);
   padding-bottom: 1px;
   transition: border-color 0.2s, color 0.2s;
 }

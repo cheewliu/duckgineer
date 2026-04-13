@@ -1,6 +1,6 @@
-# EngineerForge AI — Post Template & Style Guide
+# Duckgineer — Post Template & Style Guide
 
-This file is the reference for how every post on EngineerForge AI should be written and structured.
+This file is the reference for how every post on Duckgineer should be written and structured.
 Update this file whenever the style evolves.
 
 ---
@@ -102,7 +102,7 @@ src/content/posts/your-post-slug.md
 ```
 
 - All lowercase, hyphen-separated
-- Matches the URL: `engineerforge-ai.vercel.app/posts/your-post-slug`
+- Matches the URL: `duckgineer.vercel.app/posts/your-post-slug`
 
 ---
 

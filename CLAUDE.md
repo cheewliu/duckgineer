@@ -1,4 +1,4 @@
-# EngineerForge AI — Claude Memory
+# Duckgineer — Claude Memory
 
 This file is read by Claude at the start of every session.
 Update it whenever preferences, conventions, or decisions change.
@@ -7,10 +7,10 @@ Update it whenever preferences, conventions, or decisions change.
 
 ## Project
 
-- **Name:** EngineerForge AI
+- **Name:** Duckgineer
 - **Framework:** Astro 6, static output
 - **Repo:** https://github.com/cheewliu/EngineerForgeAI
-- **Live site:** https://engineerforge-ai.vercel.app
+- **Live site:** https://duckgineer.vercel.app
 - **Local dev:** http://localhost:4321
 
 ---
@@ -36,7 +36,7 @@ Update it whenever preferences, conventions, or decisions change.
 ### Existing posts (in order)
 | File | Title | Date |
 |------|-------|------|
-| `why-i-built-applied-claude-lab.md` | Why I Am Building EngineerForge AI | 2026-04-10 |
+| `why-i-built-applied-claude-lab.md` | Why I Am Building Duckgineer | 2026-04-10 |
 | `prompt-engineering-csharp.md` | Using .md Files to Standardise Your Team's AI Agent | 2026-04-13 |
 
 ---
@@ -104,5 +104,9 @@ If asked: ideas and experiences are 100% the author's. Claude may be used to cle
 | 2026-04-13 | Home banner: hero-banner.png |
 | 2026-04-13 | About page banner: about-banner.png |
 | 2026-04-13 | est. 2024 → est. 2026 on about page |
+| 2026-04-13 | Full rebrand: EngineerForge AI → Duckgineer |
+| 2026-04-13 | Tagline: "Where Engineers Talk, AI Thinks." |
+| 2026-04-13 | Color scheme: purple/blue → duck yellow (#F5C518) / orange (#F97316) |
+| 2026-04-13 | Logo mark: EF → 🦆, wordmark: Engineer+Forge → Duck+gineer |
 | 2026-04-13 | Removed --accent highlight from first manifesto card (consistency) |
 | 2026-04-13 | Post style guide created at docs/post-template.md |
