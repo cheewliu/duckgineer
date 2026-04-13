@@ -1,0 +1,108 @@
+# EngineerForge AI — Claude Memory
+
+This file is read by Claude at the start of every session.
+Update it whenever preferences, conventions, or decisions change.
+
+---
+
+## Project
+
+- **Name:** EngineerForge AI
+- **Framework:** Astro 6, static output
+- **Repo:** https://github.com/cheewliu/EngineerForgeAI
+- **Live site:** https://engineerforge-ai.vercel.app
+- **Local dev:** http://localhost:4321
+
+---
+
+## Author
+
+- SW and HW engineer
+- Leads engineers (SW + HW) on adopting AI in real workflows
+- Implements AI solutions for the team
+- Primary tools: **Claude**, Codex, OpenTAP
+- **Never mention PTEM** — OpenTAP only
+- No specific language focus (not C#-only) — covers engineering broadly
+
+---
+
+## Posts
+
+- All posts live in `src/content/posts/*.md`
+- Cover images go in `public/images/` and are referenced as `/images/filename.png`
+- Full style guide: `docs/post-template.md`
+- **Always read `docs/post-template.md` before drafting or editing a post**
+
+### Existing posts (in order)
+| File | Title | Date |
+|------|-------|------|
+| `why-i-built-applied-claude-lab.md` | Why I Am Building EngineerForge AI | 2026-04-10 |
+| `prompt-engineering-csharp.md` | Prompt Engineering for Deterministic C# Code Generation | 2026-04-10 |
+
+---
+
+## Writing style
+
+- Fun, honest, first-person — not formal or corporate
+- Short sentences, direct section titles
+- One good joke > forced humour everywhere
+- No "In this post I will..." openers
+- No hype words: revolutionary, game-changing, unlock, leverage
+- Code blocks must have real code + comments, no pseudocode dumps
+- Memes and inline images are encouraged — keeps it human
+- End posts with a real takeaway or open question, not "thanks for reading"
+
+### The AI transparency rule
+If asked: ideas and experiences are 100% the author's. Claude may be used to clean grammar or structure — never to generate content from scratch.
+
+---
+
+## Site conventions
+
+- **Syntax highlighting:** Shiki `dark-plus` theme (VS Code dark)
+- **Code block background:** `#1e1e1e`, border `#3c3c3c`
+- **Fonts:** loaded async via Google Fonts (Inter + JetBrains Mono)
+- **Theme:** dark/light toggle, localStorage key `ef-theme`, `data-theme` on `<html>`
+- **Search:** Pagefind (runs post-build: `npx pagefind --site dist`)
+- **Deployment:** Vercel, auto-deploys from `main` branch push
+
+## Key files
+
+| File | Purpose |
+|------|---------|
+| `astro.config.mjs` | Astro config, Shiki theme, site URL, image domains |
+| `src/styles/global.css` | All global styles, CSS variables, dark/light tokens |
+| `src/layouts/BaseLayout.astro` | Head, fonts, FOUC prevention, theme toggle, scroll-reveal |
+| `src/layouts/PostLayout.astro` | Post page layout — TOC, series banner, related posts, newsletter |
+| `src/pages/[...page].astro` | Home + pagination |
+| `src/pages/about.astro` | About page |
+| `src/components/Header.astro` | Nav — auto-generates categories from post tags |
+| `vercel.json` | CSP headers — must include fonts.googleapis.com + fonts.gstatic.com |
+| `docs/post-template.md` | Post writing guide — read before drafting posts |
+
+---
+
+## Things to never do
+
+- Never mention PTEM — OpenTAP only
+- Never use `github-dark` Shiki theme — it's `dark-plus`
+- Never hardcode `test.jpg`, `brand.svg`, `logo.svg` — they're removed
+- Never commit `.claude/` folder
+- Never use `git add -A` blindly — stage specific files
+- Don't add `--no-verify` to git commits
+- Don't make posts sound like AI wrote them
+
+---
+
+## Decisions log
+
+| Date | Decision |
+|------|----------|
+| 2026-04-13 | Switched Shiki theme: github-dark → dracula → dark-plus (VS Code) |
+| 2026-04-13 | Deleted 10 placeholder posts, keeping only 2 real ones |
+| 2026-04-13 | All cover images: local PNGs in public/images/ (replaced Picsum) |
+| 2026-04-13 | Home banner: hero-banner.png |
+| 2026-04-13 | About page banner: about-banner.png |
+| 2026-04-13 | est. 2024 → est. 2026 on about page |
+| 2026-04-13 | Removed --accent highlight from first manifesto card (consistency) |
+| 2026-04-13 | Post style guide created at docs/post-template.md |

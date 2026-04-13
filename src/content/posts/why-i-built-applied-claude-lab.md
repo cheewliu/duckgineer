@@ -1,6 +1,6 @@
 ---
 title: "Why I Am Building EngineerForge AI"
-date: 2026-04-13
+date: 2026-04-10
 description: "An intro to EngineerForge AI — who's behind it, why it exists, and what kind of content to expect. Spoiler: grammar cancer meme included."
 tags: ["meta", "introduction"]
 draft: false
