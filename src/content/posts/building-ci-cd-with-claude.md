@@ -3,7 +3,7 @@ title: "Building a Claude-Powered Code Review Step in CI/CD"
 date: 2026-03-10
 description: "Adding an AI review gate to a GitHub Actions pipeline — what it checks, where it adds value, and the guardrails that prevent it from becoming noise."
 tags: ["claude", "ci-cd", "devops", "csharp"]
-cover: "/images/test.jpg"
+cover: "https://picsum.photos/seed/pipeline/800/450"
 draft: false
 ---
 

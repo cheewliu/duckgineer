@@ -60,7 +60,7 @@ const nums = pageNums(page.currentPage, page.lastPage);
       {/* ── Left: big featured post ── */}
       <a href={`/posts/${featured.id}`} class="mag-featured reveal">
         {featured.data.cover
-          ? <img class="mag-featured__img" src={featured.data.cover} alt={featured.data.title} />
+          ? <img class="mag-featured__img" src={featured.data.cover} alt={featured.data.title} fetchpriority="high" decoding="async" />
           : <div class="mag-featured__no-img"></div>
         }
         <div class="mag-featured__overlay"></div>

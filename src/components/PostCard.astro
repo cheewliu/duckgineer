@@ -24,7 +24,7 @@ const isDev = import.meta.env.DEV;
 <article class="post-card reveal">
   <a href={`/posts/${slug}`} tabindex="-1" aria-hidden="true">
     {cover
-      ? <img class="post-card__img" src={cover} alt={title} loading="lazy" width="390" height="220" />
+      ? <img class="post-card__img" src={cover} alt={title} loading="lazy" decoding="async" width="390" height="220" />
       : <div class="post-card__no-img" style={`background:${gradient}`}>
           <span style="font-size:1.5rem;opacity:0.2">◆</span>
         </div>

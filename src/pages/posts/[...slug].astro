@@ -11,18 +11,46 @@ export async function getStaticPaths() {
     (a, b) => b.data.date.getTime() - a.data.date.getTime()
   );
 
-  return sorted.map((post, index) => ({
-    params: { slug: post.id },
-    props: {
-      post,
-      prev: sorted[index + 1] ?? null,
-      next: sorted[index - 1] ?? null,
-    },
-  }));
+  return sorted.map((post, index) => {
+    // Related posts: top 3 by shared tag count
+    const related = sorted
+      .filter(p => p.id !== post.id)
+      .map(p => ({
+        ...p,
+        score: p.data.tags.filter(t => post.data.tags.includes(t)).length,
+      }))
+      .filter(p => p.score > 0)
+      .sort((a, b) => b.score - a.score || b.data.date.getTime() - a.data.date.getTime())
+      .slice(0, 3);
+
+    // Series: find all posts in same series
+    let series = undefined;
+    if (post.data.series) {
+      const seriesPosts = sorted
+        .filter(p => p.data.series === post.data.series)
+        .map(p => ({ id: p.id, title: p.data.title, order: p.data.seriesOrder ?? 0 }));
+      series = {
+        name: post.data.series,
+        order: post.data.seriesOrder ?? 0,
+        posts: seriesPosts,
+      };
+    }
+
+    return {
+      params: { slug: post.id },
+      props: {
+        post,
+        prev: sorted[index + 1] ?? null,
+        next: sorted[index - 1] ?? null,
+        related,
+        series,
+      },
+    };
+  });
 }
 
-const { post, prev, next } = Astro.props;
-const { Content } = await render(post);
+const { post, prev, next, related, series } = Astro.props;
+const { Content, headings } = await render(post);
 ---
 <PostLayout
   title={post.data.title}
@@ -31,6 +59,9 @@ const { Content } = await render(post);
   tags={post.data.tags}
   cover={post.data.cover}
   body={post.body}
+  headings={headings}
+  related={related}
+  series={series}
 >
   <Content />
 

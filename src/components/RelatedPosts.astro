@@ -1,0 +1,42 @@
+---
+import PostCard from './PostCard.astro';
+
+interface RelatedPost {
+  id: string;
+  body?: string;
+  data: {
+    title: string;
+    date: Date;
+    description: string;
+    tags: string[];
+    cover?: string;
+    draft?: boolean;
+  };
+}
+
+interface Props {
+  posts: RelatedPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts.length > 0 && (
+  <div class="related-posts">
+    <p class="related-posts__title">Related posts</p>
+    <div class="related-posts__grid reveal-stagger">
+      {posts.map(post => (
+        <PostCard
+          title={post.data.title}
+          slug={post.id}
+          date={post.data.date}
+          description={post.data.description}
+          tags={post.data.tags}
+          cover={post.data.cover}
+          body={post.body}
+          draft={post.data.draft}
+        />
+      ))}
+    </div>
+  </div>
+)}

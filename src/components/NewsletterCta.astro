@@ -1,0 +1,24 @@
+---
+// NewsletterCta — static UI. Wire up action to ConvertKit / Mailchimp / etc.
+---
+<div class="newsletter-cta">
+  <div class="newsletter-cta__icon">📬</div>
+  <h3 class="newsletter-cta__title">Stay in the loop</h3>
+  <p class="newsletter-cta__desc">
+    New posts on AI engineering, prompt tricks, and real cost benchmarks — weekly, no fluff.
+  </p>
+  <form
+    class="newsletter-cta__form"
+    onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed!'; this.querySelector('input').disabled = true; this.querySelector('button').disabled = true;"
+  >
+    <input
+      class="newsletter-cta__input"
+      type="email"
+      placeholder="you@company.com"
+      required
+      autocomplete="email"
+    />
+    <button class="newsletter-cta__btn" type="submit">Subscribe →</button>
+  </form>
+  <p class="newsletter-cta__note">No spam. Unsubscribe any time.</p>
+</div>

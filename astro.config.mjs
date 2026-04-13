@@ -6,6 +6,12 @@ export default defineConfig({
   site: 'https://engineerforge-ai.vercel.app',
   output: 'static',
   adapter: vercel(),
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: false,
+    },
+  },
   integrations: [
     sitemap({
       lastmod: new Date(),
@@ -14,6 +20,6 @@ export default defineConfig({
     }),
   ],
   image: {
-    domains: ['fastly.picsum.photos', 'picsum.photos'],
+    domains: ['fastly.picsum.photos', 'picsum.photos', 'images.unsplash.com'],
   },
 });

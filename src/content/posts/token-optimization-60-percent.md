@@ -3,8 +3,10 @@ title: "Token Optimization: How I Cut API Costs by 60% in Production"
 date: 2026-04-07
 description: "A real breakdown of where tokens were being wasted in my Claude API usage, and the specific techniques that cut the bill without hurting output quality."
 tags: ["token-optimization", "claude", "cost"]
-cover: "/images/test.jpg"
+cover: "https://picsum.photos/seed/optimize/800/450"
 draft: false
+series: "Cost Optimization"
+seriesOrder: 2
 ---
 
 In January I was spending roughly $380/month on Claude API calls for a test automation assistant. By March that number was $148. Same workload, same output quality. Here's exactly what changed.

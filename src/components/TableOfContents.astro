@@ -1,0 +1,52 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const filtered = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+{filtered.length > 1 && (
+  <nav class="toc" aria-label="Table of contents">
+    <p class="toc__title">On this page</p>
+    <ol class="toc__list">
+      {filtered.map(h => (
+        <li class="toc__item">
+          <a
+            href={`#${h.slug}`}
+            class={`toc__link${h.depth === 3 ? ' toc__link--h3' : ''}`}
+            data-heading={h.slug}
+          >
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<script>
+  // Highlight active TOC link as user scrolls
+  const links = document.querySelectorAll<HTMLAnchorElement>('.toc__link[data-heading]');
+  if (links.length) {
+    const headingEls = [...links].map(l => document.getElementById(l.dataset.heading!)).filter(Boolean) as HTMLElement[];
+
+    const activate = () => {
+      let active = headingEls[0];
+      for (const el of headingEls) {
+        if (el.getBoundingClientRect().top <= 100) active = el;
+      }
+      links.forEach(l => l.classList.toggle('active', l.dataset.heading === active?.id));
+    };
+
+    window.addEventListener('scroll', activate, { passive: true });
+    activate();
+  }
+</script>

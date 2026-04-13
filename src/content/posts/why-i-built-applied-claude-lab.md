@@ -4,7 +4,7 @@ date: 2026-04-11
 description: "An introduction to Applied Claude Lab — what it is, why it exists, and what kind of content to expect."
 tags: ["meta", "introduction"]
 draft: false
-cover: "/images/test.jpg"
+cover: "https://picsum.photos/seed/intro/800/450"
 ---
 
 Applied Claude Lab is an engineering-focused project that explores how to use Claude in real software development and test automation workflows.

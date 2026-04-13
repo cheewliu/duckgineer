@@ -85,6 +85,16 @@ const jsonLd = type === 'article'
     <link rel="alternate" type="application/rss+xml" title="EngineerForge AI RSS" href="/rss.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Theme: must run before CSS paints to prevent FOUC -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('ef-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored ?? (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
@@ -95,6 +105,7 @@ const jsonLd = type === 'article'
       <slot />
     </main>
     <Footer />
+
     <!-- Scroll to top -->
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
@@ -103,20 +114,31 @@ const jsonLd = type === 'article'
     </button>
 
     <script>
-      // Scroll to top
+      // ── Theme toggle ──────────────────────────────────────────────────
+      const toggleBtn = document.getElementById('themeToggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'light' ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('ef-theme', next);
+        });
+      }
+
+      // ── Scroll to top ─────────────────────────────────────────────────
       const scrollBtn = document.getElementById('scrollTop');
       if (scrollBtn) {
-        const toggleBtn = () => {
+        const updateScrollBtn = () => {
           scrollBtn.classList.toggle('visible', window.scrollY > 400);
         };
-        window.addEventListener('scroll', toggleBtn, { passive: true });
-        toggleBtn();
+        window.addEventListener('scroll', updateScrollBtn, { passive: true });
+        updateScrollBtn();
         scrollBtn.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
-      // Scroll-reveal observer
+      // ── Scroll-reveal observer ────────────────────────────────────────
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {

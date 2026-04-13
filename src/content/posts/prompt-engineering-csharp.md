@@ -3,7 +3,7 @@ title: "Prompt Engineering for Deterministic C# Code Generation"
 date: 2026-04-09
 description: "How I structure prompts to get Claude to produce reliable, compilable C# every time — including the exact templates I use."
 tags: ["prompt-engineering", "csharp", "claude"]
-cover: "/images/test.jpg"
+cover: "https://picsum.photos/seed/csharp/800/450"
 draft: false
 ---
 

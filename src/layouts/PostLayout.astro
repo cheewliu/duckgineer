@@ -1,8 +1,36 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import TagList from '../components/TagList.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import NewsletterCta from '../components/NewsletterCta.astro';
 import { readingTime } from '../utils/readingTime';
 import { getTagColor } from '../utils/tagColor';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface RelatedPost {
+  id: string;
+  body?: string;
+  data: {
+    title: string;
+    date: Date;
+    description: string;
+    tags: string[];
+    cover?: string;
+    draft?: boolean;
+  };
+}
+
+interface SeriesPost {
+  id: string;
+  title: string;
+  order: number;
+}
 
 interface Props {
   title: string;
@@ -11,9 +39,12 @@ interface Props {
   tags: string[];
   cover?: string;
   body?: string;
+  headings?: Heading[];
+  related?: RelatedPost[];
+  series?: { name: string; order: number; posts: SeriesPost[] };
 }
 
-const { title, date, description, tags, cover, body } = Astro.props;
+const { title, date, description, tags, cover, body, headings = [], related = [], series } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
@@ -21,49 +52,79 @@ const formattedDate = date.toLocaleDateString('en-US', {
 const mins = body ? readingTime(body) : null;
 const firstTag = tags[0] ?? 'meta';
 const tagColor = getTagColor(firstTag);
+const hasToc = headings.filter(h => h.depth <= 3).length > 1;
 ---
 <BaseLayout title={title} description={description} cover={cover} type="article" publishedDate={date} tags={tags}>
   <!-- Reading progress bar -->
   <div class="reading-progress" id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
-  <article class="post-article">
-    <header class="post-header">
-      <a href="/" class="post-header__back">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
-          <path d="M10 3L5 8l5 5"/>
-        </svg>
-        All posts
-      </a>
+  <div class={hasToc ? 'post-layout' : undefined}>
+    <article class="post-article">
+      <header class="post-header">
+        <a href="/" class="post-header__back">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
+            <path d="M10 3L5 8l5 5"/>
+          </svg>
+          All posts
+        </a>
 
-      <div class="post-header__category" style={`color:${tagColor.dot}`}>
-        <span class="post-card__category-dot" style={`background:${tagColor.dot}`}></span>
-        {firstTag}
+        <div class="post-header__category" style={`color:${tagColor.dot}`}>
+          <span class="post-card__category-dot" style={`background:${tagColor.dot}`}></span>
+          {firstTag}
+        </div>
+
+        <h1 class="post-header__title">{title}</h1>
+
+        <div class="post-header__meta">
+          <time datetime={date.toISOString()}>{formattedDate}</time>
+          {mins && <><span class="meta-sep">·</span><span>{mins} min read</span></>}
+        </div>
+
+        <TagList tags={tags} />
+      </header>
+
+      {/* Series banner */}
+      {series && (
+        <div class="series-banner">
+          <span class="series-banner__label">Series</span>
+          <div class="series-banner__info">
+            <div class="series-banner__name">{series.name}</div>
+            <div class="series-banner__posts">
+              {series.posts.sort((a, b) => a.order - b.order).map(p => (
+                <a
+                  href={p.id === '' ? undefined : `/posts/${p.id}`}
+                  class={`series-banner__post${p.order === series.order ? ' series-banner__post--current' : ''}`}
+                >
+                  <span class="series-banner__post-num">{p.order}</span>
+                  {p.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {cover && (
+        <div class="post-cover-wrap">
+          <img class="post-cover-img" src={cover} alt={title} width="1200" height="630" decoding="async" />
+        </div>
+      )}
+
+      <div class="post-content">
+        <slot />
       </div>
 
-      <h1 class="post-header__title">{title}</h1>
+      <NewsletterCta />
 
-      <div class="post-header__meta">
-        <time datetime={date.toISOString()}>{formattedDate}</time>
-        {mins && <><span class="meta-sep">·</span><span>{mins} min read</span></>}
-      </div>
+      <RelatedPosts posts={related} />
+    </article>
 
-      <TagList tags={tags} />
-    </header>
-
-    {cover && (
-      <div class="post-cover-wrap">
-        <img class="post-cover-img" src={cover} alt={title} width="1200" height="630" />
-      </div>
-    )}
-
-    <div class="post-content">
-      <slot />
-    </div>
-  </article>
+    {hasToc && <TableOfContents headings={headings} />}
+  </div>
 </BaseLayout>
 
 <script>
-  // Reading progress
+  // ── Reading progress ──────────────────────────────────────────────────
   const bar = document.getElementById('reading-progress');
   const article = document.querySelector('article');
 
@@ -78,7 +139,16 @@ const tagColor = getTagColor(firstTag);
     update();
   }
 
-  // Copy buttons
+  // ── Save / restore scroll position ───────────────────────────────────
+  const SCROLL_KEY = `ef-scroll-${location.pathname}`;
+  const saved = sessionStorage.getItem(SCROLL_KEY);
+  if (saved) window.scrollTo({ top: parseInt(saved, 10) });
+
+  window.addEventListener('beforeunload', () => {
+    sessionStorage.setItem(SCROLL_KEY, String(Math.round(window.scrollY)));
+  });
+
+  // ── Copy buttons for code blocks ──────────────────────────────────────
   document.querySelectorAll('.post-content pre').forEach((pre) => {
     const wrapper = document.createElement('div');
     wrapper.className = 'code-block-wrapper';

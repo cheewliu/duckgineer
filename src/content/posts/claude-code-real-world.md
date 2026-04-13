@@ -3,8 +3,10 @@ title: "Claude Code in a Real Codebase: 30 Days of Honest Notes"
 date: 2026-04-03
 description: "What Claude Code is actually good at, where it falls short, and the daily workflow I settled on after a month of real use."
 tags: ["claude-code", "cli", "workflow"]
-cover: "/images/test.jpg"
+cover: "https://picsum.photos/seed/coding/800/450"
 draft: false
+series: "Claude in the Real World"
+seriesOrder: 1
 ---
 
 I've been using Claude Code as my primary coding assistant for 30 days. Not for demos, not for blog posts — for actual work on a C# test automation platform used in production.

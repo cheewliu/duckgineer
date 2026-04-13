@@ -3,8 +3,10 @@ title: "Context Window Management: The Hidden Skill in Claude Workflows"
 date: 2026-03-05
 description: "Most engineers think about what to put in the context. Few think about what to leave out — and that's where quality and cost are actually won or lost."
 tags: ["claude", "prompt-engineering", "token-optimization", "workflow"]
-cover: "/images/test.jpg"
+cover: "https://picsum.photos/seed/memory/800/450"
 draft: false
+series: "Cost Optimization"
+seriesOrder: 1
 ---
 
 Every prompt you send to Claude has a context window. How you fill it determines the quality of the response, the cost of the call, and how reliably Claude follows your instructions.

@@ -1,30 +1,57 @@
 ---
-const path = Astro.url.pathname;
+import { getCollection } from 'astro:content';
 
-const categories = [
-  { label: 'Claude', href: '/tags/claude' },
-  { label: 'Prompt Engineering', href: '/tags/prompt-engineering' },
-  { label: 'OpenTAP', href: '/tags/opentap' },
-  { label: 'C#', href: '/tags/csharp' },
-  { label: 'Token Optimization', href: '/tags/token-optimization' },
-  { label: 'Workflow', href: '/tags/workflow' },
-  { label: 'CI/CD', href: '/tags/ci-cd' },
-];
+const path = Astro.url.pathname;
+const isDev = import.meta.env.DEV;
+
+// Auto-derive top categories from actual post tags
+const all = await getCollection('posts', p => isDev || !p.data.draft);
+const tagMap = new Map<string, number>();
+for (const p of all) {
+  for (const t of p.data.tags) tagMap.set(t, (tagMap.get(t) ?? 0) + 1);
+}
+const categories = [...tagMap.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 9)
+  .map(([tag]) => ({
+    label: tag.split('-').map((w: string) => w[0].toUpperCase() + w.slice(1)).join(' '),
+    href: `/tags/${tag}`,
+    tag,
+  }));
 ---
 <header class="site-header">
   <div class="site-header__inner">
     <a href="/" class="site-header__logo">
       <span class="logo-mark">EF</span>
-      <span class="logo-text"><span class="logo-text__engineer">Engineer</span><span class="logo-text__forge">Forge</span> <span class="logo-text__ai">AI</span></span>
+      <span class="logo-text">
+        <span class="logo-text__engineer">Engineer</span><span class="logo-text__forge">Forge</span>
+        <span class="logo-text__ai">AI</span>
+      </span>
     </a>
+
     <div class="site-header__right">
       <nav aria-label="Main navigation">
         <ul class="site-header__nav">
           <li><a href="/" aria-current={path === '/' || /^\/\d/.test(path) ? 'page' : undefined}>Posts</a></li>
           <li><a href="/tags" aria-current={path === '/tags' ? 'page' : undefined}>Topics</a></li>
+          <li><a href="/search" aria-current={path === '/search' ? 'page' : undefined}>Search</a></li>
           <li><a href="/about" aria-current={path.startsWith('/about') ? 'page' : undefined}>About</a></li>
         </ul>
       </nav>
+
+      <!-- Theme toggle -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">
+        <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
     </div>
   </div>
 

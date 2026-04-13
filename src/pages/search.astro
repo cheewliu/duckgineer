@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Search" description="Search all posts on EngineerForge AI.">
+  <div class="search-wrap">
+    <div class="page-header">
+      <h1>Search</h1>
+      <p class="page-header__sub">Find posts by keyword, topic, or tech</p>
+    </div>
+
+    <div id="pagefind-search"></div>
+
+    <div id="search-fallback" style="display:none">
+      <p style="color:var(--text-3);font-size:0.9rem;padding:2rem 0;text-align:center">
+        Search index not available in development mode.<br/>
+        Run <code style="background:var(--bg-raised);padding:2px 6px;border-radius:4px;font-family:var(--font-mono)">npm run build</code> to generate the search index.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var container = document.getElementById('pagefind-search');
+    var fallback  = document.getElementById('search-fallback');
+    if (!container) return;
+
+    // Load Pagefind UI CSS
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/pagefind/pagefind-ui.css';
+    document.head.appendChild(link);
+
+    // Load Pagefind UI JS
+    var script = document.createElement('script');
+    script.src = '/pagefind/pagefind-ui.js';
+    script.onload = function () {
+      new window.PagefindUI({
+        element: '#pagefind-search',
+        showSubResults: true,
+        showImages: true,
+        resetStyles: false,
+      });
+    };
+    script.onerror = function () {
+      container.style.display = 'none';
+      if (fallback) fallback.style.display = 'block';
+    };
+    document.head.appendChild(script);
+  })();
+</script>
