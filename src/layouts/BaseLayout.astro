@@ -90,7 +90,7 @@ const jsonLd = type === 'article'
     <!-- Theme: must run before CSS paints to prevent FOUC -->
     <script is:inline>
       (function () {
-        var stored = localStorage.getItem('ef-theme');
+        var stored = localStorage.getItem('duck-theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = stored ?? (prefersDark ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
@@ -123,7 +123,7 @@ const jsonLd = type === 'article'
           const current = document.documentElement.getAttribute('data-theme');
           const next = current === 'light' ? 'dark' : 'light';
           document.documentElement.setAttribute('data-theme', next);
-          localStorage.setItem('ef-theme', next);
+          localStorage.setItem('duck-theme', next);
         });
       }
 

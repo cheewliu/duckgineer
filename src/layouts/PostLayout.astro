@@ -142,7 +142,7 @@ const hasToc = headings.filter(h => h.depth <= 3).length > 1;
   }
 
   // ── Save / restore scroll position ───────────────────────────────────
-  const SCROLL_KEY = `ef-scroll-${location.pathname}`;
+  const SCROLL_KEY = `duck-scroll-${location.pathname}`;
   const saved = sessionStorage.getItem(SCROLL_KEY);
   if (saved) window.scrollTo({ top: parseInt(saved, 10) });
 

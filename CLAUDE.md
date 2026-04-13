@@ -87,7 +87,7 @@ Ideas and experiences are 100% the author's. Claude may be used to clean grammar
 - **Syntax highlighting:** Shiki `dark-plus` theme (VS Code dark)
 - **Code block background:** `#1e1e1e`, border `#3c3c3c`
 - **Fonts:** Inter + JetBrains Mono, loaded async via Google Fonts
-- **Theme:** dark/light toggle, localStorage key `ef-theme`, `data-theme` on `<html>`
+- **Theme:** dark/light toggle, localStorage key `duck-theme`, `data-theme` on `<html>`
 - **Search:** Pagefind (runs post-build: `npx pagefind --site dist`)
 - **Deployment:** Vercel, auto-deploys from `main` branch push
 - **Favicon:** 🦆 duck SVG at `public/favicon.svg`
